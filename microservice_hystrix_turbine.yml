@@ -1,0 +1,87 @@
+spring: 
+  profiles:
+    active:
+    - dev
+---
+server:
+  port: 91
+  servlet:
+    context-path: /
+
+spring:
+  profiles: dev
+  application:
+    name: microservice-hystrix-turbine
+
+eureka:
+  instance:
+    hostname: localhost
+    appname: microservice-hystrix-turbine
+    instance-id: microservice-hystrix-turbine:91
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone:  http://localhost:1001/eureka
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+turbine:
+  app-config: microservice-consumer
+  clusterNameExpression: "'default'"
+
+info:
+  groupId: $project.name$
+  artifactId: $project.artifactId$
+  version:  $project.version$
+  description: $project.description$
+  encoding: $project.build.sourceEncoding$
+  java:
+    version: $java.version$
+---
+server:
+  port: 91
+  servlet:
+    context-path: /
+
+spring:
+  profiles: test
+  application:
+    name: microservice-hystrix-turbine
+
+eureka:
+  instance:
+    hostname: localhost
+    appname: microservice-hystrix-turbine
+    instance-id: microservice-hystrix-turbine:91
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone:  http://localhost:1001/eureka
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+turbine:
+  app-config: microservice-consumer
+  clusterNameExpression: "'default'"
+
+info:
+  groupId: $project.name$
+  artifactId: $project.artifactId$
+  version:  $project.version$
+  description: $project.description$
+  encoding: $project.build.sourceEncoding$
+  java:
+    version: $java.version$
+
+
+
+
+
+
+
+
+
