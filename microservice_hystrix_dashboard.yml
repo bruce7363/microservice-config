@@ -1,0 +1,71 @@
+spring: 
+  profiles:
+    active:
+    - dev
+---
+server:
+  port: 90
+  servlet:
+    context-path: /
+
+spring:
+  profiles: dev
+  application:
+    name: microservice-hystrix-dashboard
+
+eureka:
+  instance:
+    hostname: localhost
+    appname: microservice-hystrix-dashboard
+    instance-id: microservice-hystrix-dashboard:90
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone:  http://localhost:1001/eureka
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+info:
+  groupId: $project.name$
+  artifactId: $project.artifactId$
+  version:  $project.version$
+  description: $project.description$
+  encoding: $project.build.sourceEncoding$
+  java:
+    version: $java.version$
+---
+server:
+  port: 90
+  servlet:
+    context-path: /
+
+spring:
+  profiles: test
+  application:
+    name: microservice-hystrix-dashboard
+
+eureka:
+  instance:
+    hostname: localhost
+    appname: microservice-hystrix-dashboard
+    instance-id: microservice-hystrix-dashboard:90
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone:  http://localhost:1001/eureka
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+info:
+  groupId: $project.name$
+  artifactId: $project.artifactId$
+  version:  $project.version$
+  description: $project.description$
+  encoding: $project.build.sourceEncoding$
+  java:
+    version: $java.version$
+
