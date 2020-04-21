@@ -1,0 +1,161 @@
+spring: 
+  profiles:
+    active:
+    - dev
+---
+server:
+  port: 3001
+  servlet:
+    context-path: /
+
+spring:
+  profiles: dev
+  application:
+    name: microservice-consumer
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_film?serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  thymeleaf:
+    cache: false
+  main:
+    allow-bean-definition-overriding: true
+
+eureka:
+  instance:
+    hostname: localhost
+    appname: microservice-consumer
+    instance-id: microservice-consumer:3001
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone:  http://localhost:1001/eureka
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 9000
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+
+info:
+  groupId: $project.name$
+  artifactId: $project.artifactId$
+  version:  $project.version$
+  description: $project.description$
+  encoding: $project.build.sourceEncoding$
+  java:
+    version: $java.version$
+
+filmIntroImageFilePath: /home/film_sys/filmIntroImage/
+
+introImageVirtualPath: /introImage/
+
+coverImageFilePath:  /home/film_sys/filmCoverImage/
+
+coverImageVirtualPath: /coverImage/
+---
+server:
+  port: 3001
+  servlet:
+    context-path: /
+
+spring:
+  profiles: test
+  application:
+    name: microservice-consumer
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_film?serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  thymeleaf:
+    cache: false
+  main:
+    allow-bean-definition-overriding: true
+
+eureka:
+  instance:
+    hostname: localhost
+    appname: microservice-consumer
+    instance-id: microservice-consumer:3001
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone:  http://localhost:1001/eureka
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 9000
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+
+info:
+  groupId: $project.name$
+  artifactId: $project.artifactId$
+  version:  $project.version$
+  description: $project.description$
+  encoding: $project.build.sourceEncoding$
+  java:
+    version: $java.version$
+
+filmIntroImageFilePath: /home/film_sys/filmIntroImage/
+
+introImageVirtualPath: /introImage/
+
+coverImageFilePath:  /home/film_sys/filmCoverImage/
+
+coverImageVirtualPath: /coverImage/
+
+
+
+
+
+
+
+
+
